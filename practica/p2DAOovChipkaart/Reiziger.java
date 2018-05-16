@@ -2,6 +2,7 @@ package p2DAOovChipkaart;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Reiziger {
 	private int id;
@@ -9,7 +10,7 @@ public class Reiziger {
 	private Date gbdatum;
 	private String voorletter;
 	private String tussenvoegsel;
-	private ArrayList<OvChipkaart> ovList = new ArrayList<OvChipkaart>();
+	private List<OvChipkaart> ovList = new ArrayList<OvChipkaart>();
 	
 	public Reiziger(int i, String v, String t, String n, Date gbd) {
 		id = i;
@@ -35,11 +36,11 @@ public class Reiziger {
 		this.gbdatum = gbdatum;
 	}
 
-	public ArrayList<OvChipkaart> getOvList() {
+	public List<OvChipkaart> getOvList() {
 		return ovList;
 	}
 
-	public void setOvList(ArrayList<OvChipkaart> ovList) {
+	public void setOvList(List<OvChipkaart> ovList) {
 		this.ovList = ovList;
 	}
 
@@ -88,10 +89,22 @@ public class Reiziger {
 	public String toString() {
 		String s = "ID: " + id + " Naam: " + voorletter + ". ";
 		if( tussenvoegsel == null) {
+			s +=  naam + " geboortedatum: " + gbdatum + " met ov: " + ovList.toString();
+		}else {
+			s +=  tussenvoegsel + " " + naam + " geboortedatum: " + gbdatum + " met ov: " + ovList.toString();
+		}
+		return s;
+	}
+	
+	//een tweede toString om een eindeloze loop te voorkomen.
+	public String toString1() {
+		String s = "ID: " + id + " Naam: " + voorletter + ". ";
+		if( tussenvoegsel == null) {
 			s +=  naam + " geboortedatum: " + gbdatum;
 		}else {
 			s +=  tussenvoegsel + " " + naam + " geboortedatum: " + gbdatum;
 		}
 		return s;
 	}
+	
 }

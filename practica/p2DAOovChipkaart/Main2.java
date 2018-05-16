@@ -13,7 +13,9 @@ public class Main2 {
 		OvChipkaart ov3 = new OvChipkaart(33333, Date.valueOf("1999-01-03"), 2, 31.00, 7);
 		OvChipkaart ov4 = new OvChipkaart(44444, Date.valueOf("1999-01-04"), 2, 31.50, 7);
 		OvChipkaart ov5 = new OvChipkaart(55555, Date.valueOf("1999-01-04"), 2, 32.00, 7);
-
+		
+		Reiziger r1 = new Reiziger(2, "Don", "", "corleone", Date.valueOf("1999-01-01"));
+		ReizigerDao rDAO = new ReizigerOracleDaoImpl();
 /*------alle records van de tabel ophalen-------*/
 		List<OvChipkaart> test = ovDAO.findAll();
 		for(int i=0; i < test.size(); i++) {
@@ -72,6 +74,13 @@ public class Main2 {
 		ovDAO.delete(ov3);
 		ovDAO.delete(ov2);
 		ovDAO.delete(ov1);
+		
+		//ovDAO.findByOwner(2);
+		System.out.println("vind ov met id owner 2");
+		test = ovDAO.findByOwner(r1);
+		for(int i=0; i < test.size(); i++) {
+			System.out.println(test.get(i));
+		}
 		
 	}
 }

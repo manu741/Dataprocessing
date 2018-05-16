@@ -12,13 +12,15 @@ public class ReizigerOracleDaoImpl extends OracleBaseDAO implements ReizigerDao 
 
 	ArrayList<Reiziger> reizigers = new ArrayList<Reiziger>();
 	
+	
 	public ReizigerOracleDaoImpl() throws SQLException {
 		getConnection();
 	};
 	
 /*alle gegevens in de tabel ophalen*/
 	public List<Reiziger> findAll() throws SQLException{	//interface list<Reiziger> gebruiken, omdat interfaces zo veel mogelijk gebruikt moeten worden in methodes
-		ArrayList<Reiziger> findAllReizigers = new ArrayList<Reiziger>();
+		OvChipkaartDao ovDAO = new OvChipkaartDaoImpl();
+		List<Reiziger> findAllReizigers = new ArrayList<Reiziger>();
 		
 		String strQuery = "SELECT * FROM reiziger";
 		PreparedStatement pstmt = getConnection().prepareStatement(strQuery);
@@ -28,8 +30,10 @@ public class ReizigerOracleDaoImpl extends OracleBaseDAO implements ReizigerDao 
 		while(rs.next()) {
 			//System.out.println("in while");
 			r1 = new Reiziger(rs.getInt("REIZIGERID"), rs.getString("VOORLETTERS"), rs.getString("TUSSENVOEGSEL"), rs.getString("ACHTERNAAM"), rs.getDate("GEBORTEDATUM"));
+			r1.setOvList(ovDAO.findByOwner(r1));
 			findAllReizigers.add(r1);			
 		}	
+		
 		// Het Preparedstatement sluiten
 		pstmt.close();
 		rs.close();
@@ -105,7 +109,7 @@ public class ReizigerOracleDaoImpl extends OracleBaseDAO implements ReizigerDao 
 		Reiziger r1 = null;
 		rs.next();
 		r1 = new Reiziger(rs.getInt("REIZIGERID"), rs.getString("VOORLETTERS"), rs.getString("TUSSENVOEGSEL"), rs.getString("ACHTERNAAM"), rs.getDate("GEBORTEDATUM"));
-		
+	
 		return r1;
 	}
 	

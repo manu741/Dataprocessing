@@ -96,9 +96,25 @@ public class OvChipkaartDaoImpl extends OracleBaseDAO implements OvChipkaartDao 
 		while(rs.next()) {
 			ov1 = new OvChipkaart(rs.getInt("KAARTNUMMER"), rs.getDate("GELDIGTOT"), rs.getInt("KLASSE"), rs.getDouble("SALDO"), rs.getInt("REIZIGERID"));
 			gtselection.add(ov1);
+			ov1.setEigenaar(rDAO.findById(rs.getInt("REIZIGERID")));
 		}
 		
 		return gtselection;
+	}
+	
+	public List<OvChipkaart> findByOwner(Reiziger r) throws SQLException{
+		List<OvChipkaart> ovlijst = new ArrayList<OvChipkaart>();
+		String strQuery = "select * from ov_chipkaart where REIZIGERID = ?";
+		PreparedStatement pstmt = getConnection().prepareStatement(strQuery);
+		pstmt.setInt(1, r.getId());
+		ResultSet rs = pstmt.executeQuery();
+		OvChipkaart ov1 = null;
+		while(rs.next()){
+			ov1 = new OvChipkaart(rs.getInt("KAARTNUMMER"), rs.getDate("GELDIGTOT"), rs.getInt("KLASSE"), rs.getDouble("SALDO"), rs.getInt("REIZIGERID"));
+			ov1.setEigenaar(r);
+			ovlijst.add(ov1);
+		}
+		return ovlijst;
 	}
 	
 }

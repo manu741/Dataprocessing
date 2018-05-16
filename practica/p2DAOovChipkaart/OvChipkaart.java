@@ -68,6 +68,6 @@ public class OvChipkaart {
 	}
 	
 	public String toString() {
-		return "Kaartnr: " + kaartNr + " geldig tot: " + geldigTot + " klasse: " + klasse + " saldo: " + saldo + " " + eigenaar; 
+		return "Kaartnr: " + kaartNr + " geldig tot: " + geldigTot + " klasse: " + klasse + " saldo: " + saldo + " van eigenaar: " + eigenaar.toString1(); 
 	}
 }
