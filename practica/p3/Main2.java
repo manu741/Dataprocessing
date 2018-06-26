@@ -1,4 +1,4 @@
-package p2DAOovChipkaart;
+package p3;
 
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -19,7 +19,7 @@ public class Main2 {
 /*------alle records van de tabel ophalen-------*/
 		List<OvChipkaart> test = ovDAO.findAll();
 		for(int i=0; i < test.size(); i++) {
-			System.out.println(test.get(i).toString1());
+			System.out.println(test.get(i));
 		}
 		
 		System.out.println();
@@ -33,7 +33,7 @@ public class Main2 {
 		ovDAO.save(ov5);
 		test = ovDAO.findAll();
 		for(int i=0; i < test.size(); i++) {
-			System.out.println(test.get(i).toString1());
+			System.out.println(test.get(i));
 		}
 		
 		System.out.println();
@@ -45,7 +45,7 @@ public class Main2 {
 		ovDAO.delete(ov3);
 		test = ovDAO.findAll();
 		for(int i=0; i < test.size(); i++) {
-			System.out.println(test.get(i).toString1());
+			System.out.println(test.get(i));
 		}
 		
 		System.out.println();
@@ -56,7 +56,7 @@ public class Main2 {
 		ovDAO.update(ov2);
 		test = ovDAO.findAll();
 		for(int i=0; i < test.size(); i++) {
-			System.out.println(test.get(i).toString1());
+			System.out.println(test.get(i));
 		}
 		
 		System.out.println();
@@ -65,7 +65,7 @@ public class Main2 {
 		System.out.println("met geldig tot datum vinden:");
 		List<OvChipkaart> gtTest = ovDAO.findByGeldigTot(ov2.getGeldigTot());
 		for(int i=0; i < gtTest.size(); i++) {
-			System.out.println(gtTest.get(i).toString1());
+			System.out.println(gtTest.get(i));
 		}
 		
 		/*------reset de test:-----*/
@@ -75,13 +75,11 @@ public class Main2 {
 		ovDAO.delete(ov2);
 		ovDAO.delete(ov1);
 		
-		System.out.println();
-		
 		//ovDAO.findByOwner(2);
 		System.out.println("vind ov met id owner 2");
 		test = ovDAO.findByOwner(r1);
 		for(int i=0; i < test.size(); i++) {
-			System.out.println(test.get(i).toString1());
+			System.out.println(test.get(i));
 		}
 		
 	}

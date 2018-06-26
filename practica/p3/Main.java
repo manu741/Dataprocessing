@@ -1,4 +1,4 @@
-package p2DAOovChipkaart;
+package p3;
 
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -16,7 +16,7 @@ public class Main {
 /*------alle records van de tabel ophalen-------*/
 		List<Reiziger> test = rDAO.findAll();
 		for(int i=0; i < test.size(); i++) {
-			System.out.println(test.get(i).toString());
+			System.out.println(test.get(i));
 		}
 		
 		System.out.println();

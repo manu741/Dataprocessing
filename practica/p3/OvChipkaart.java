@@ -1,6 +1,8 @@
-package p2DAOovChipkaart;
+package p3;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 public class OvChipkaart {
 	private int kaartNr;
@@ -9,7 +11,8 @@ public class OvChipkaart {
 	private double saldo;
 	private int id;
 	private Reiziger eigenaar;
-	
+	private List<Product> producten = new ArrayList<Product>();
+
 	public OvChipkaart(int nr, Date tot, int klasse, double saldo, int id) {
 		kaartNr = nr;
 		geldigTot = tot;
@@ -67,11 +70,15 @@ public class OvChipkaart {
 		this.id = id;
 	}
 	
-	public String toString() {
-		return  "Kaartnr: " + kaartNr + " geldig tot: " + geldigTot + " klasse: " + klasse + " saldo: " + saldo;
+	public List<Product> getProducten() {
+		return producten;
+	}
+
+	public void setProducten(List<Product> producten) {
+		this.producten = producten;
 	}
 	
-	public String toString1() {
-		return  "Kaartnr: " + kaartNr + " geldig tot: " + geldigTot + " klasse: " + klasse + " saldo: " + saldo + " van eigenaar: " + eigenaar.toString1();
+	public String toString() {
+		return "Kaartnr: " + kaartNr + " geldig tot: " + geldigTot + " klasse: " + klasse + " saldo: " + saldo + " van eigenaar: " + eigenaar.toString1() + " heeft product(en) " + producten.toString(); 
 	}
 }
